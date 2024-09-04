@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <title>Document</title>
+  <style>
+    #pwTxt{font-weight: 700;}
+    .on{color: blue;}
+    .off{color: red;}
+  </style>
+</head>
+<body>
+  <div id="main">
+    <h3>회원가입</h3>
+    <form action="" name="frm" method="get">
+      <label>이름</label>
+      <input type="text" name="name" id="name"><br/>
+      <label>아이디</label>
+      <input type="text" name="id" id="id">
+      <button type="button" onclick="">√ 아이디중복확인</button>
+      <br/>
+      <script>
+        // 함수선언
+        function pwCheck(){
+          //console.log("호출합니다.");
+          //console.log(document.getElementById("pw").value)
+          //console.log(getElementById("pw1").value);
+          var pw = document.getElementById("pw").value;
+          var pw2 = document.getElementById("pw2").value;
+          if(pw == pw2){
+            //console.log("비밀번호가 일치합니다.");
+            document.getElementById("pwTxt").innerText = "비밀번호가 일치합니다.";
+            document.getElementById("pwTxt").classList.remove("off");
+            document.getElementById("pwTxt").classList.add("on");
+          }else{
+            //console.log("비밀번호가 일치하지 않습니다.");
+            document.getElementById("pwTxt").innerText = "비밀번호가 일치하지 않습니다.";
+            document.getElementById("pwTxt").classList.remove("on");
+            document.getElementById("pwTxt").classList.add("off");
+          }
+        }
+      </script>
+
+      <label>비밀번호</label>
+      <input type="password" name="pw" id="pw"><br/>
+      <label>비밀번호 확인</label>
+      <input type="password" name="pw2" id="pw2" onkeyup="pwCheck()">
+      <span id="pwTxt"></span><br/>
+      
+      <label>생년월일/성별</label>
+      <input type="date" name="date" id="date">
+      <input type="radio" name="gender" id="male" value="male">
+      <label for="male">남자</label>
+      <input type="radio" name="gender" id="female" value="female">
+      <label for="female">여자</label>
+      <br/>
+      
+      <label>이메일</label>
+      <input type="text" name="email1" id="email1"> @
+      <input type="text" name="email2" id="email2">
+      <select name="email3" id="email3" onchange="emailChange()">
+        <option value="">메일주소선택</option>
+        <option value="naver.com">naver.com</option>
+        <option value="gmail.com">gmail.com</option>
+        <option value="daum.net">daum.net</option>
+      </select>
+      <button type="button" onclick="">√ 인증코드 발송</button>
+      <br/>
+      <input type="text" name="auth" id="auth">
+      <button type="button" onclick="">√ 인증확인</button><br/>
+
+      <label>연락처</label>
+      <input type="text" name="phone" ><br/>
+      
+      <label>우편번호</label>
+      <input type="text" name="zipcode" id="zipcode">
+      <button type="button" onclick="addBtn()">주소검색</button><br/>
+      <label>주소</label>
+      <input type="text" name="addr" id="addr"><br/>
+      <input type="text" name="addr2" id="addr2">
+      <br/><br/>
+      <button type="button" onclick="">회원가입</button>
+      <button type="button" onclick="">취소</button>
+    </form>
+  </div>
+  <!-- script -->
+   <script>
+    function addBtn(){
+      //alert("다음주소를 호출합니다.");
+      new daum.Postcode({
+        oncomplete: function(data) {
+            //우편번호
+            document.getElementById("zipcode").value = data.zonecode;
+            document.getElementById("addr").value = data.address;
+
+        }
+    }).open();
+    }
+    function emailChange(){
+      //alert("함수 호출합니다.")
+      var email = document.getElementById("email3").value; //select 값을 변수에 저장
+      
+      if(email == ""){
+        document.getElementById("email2").readOnly = false; //읽기전용을 해제
+        document.getElementById("email2").value  = "";      // 이메일2 데이터 삭제
+      }
+      else{
+        document.getElementById("email2").value = email;    //select 값을 이메일2에 입력
+        document.getElementById("email2").readOnly = true;  //읽기전용을 적용
+      }
+    }
+   </script>
+</body>
+</html>
