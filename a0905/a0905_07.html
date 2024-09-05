@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>색상과 배경을 위한 스타일</title>
+  <style>
+    div{width: 500px; height: 300px;
+        background-color: rgb(62, 62, 126);
+        background-clip: content-box; /*border-box:선바깥부분까지, padding-box:선안쪽부분까지, content-box:패딩값안쪽부터*/
+        border: 30px dotted black;
+        padding: 100px; /* 안쪽 여백 */
+        margin: 50px; /* 바깥쪽 여백 */
+    }
+
+    #divImg{width: 700px; height: 500px; padding:0; border: 30px dashed black;
+            background-clip: content-box; 
+            background-image: url(images/s04.jpg);}
+
+  </style>
+</head>
+<body>
+  <div>
+    사계절이 꽃피는 전남 신안군에서 이번에는 ‘정열의 맨드라미의 섬 병풍도’라는 주제로 
+    ‘2024 섬 맨드라미 축제’를 마련했다. 11일~10월 13일까지 신안 증도면 병풍도에서 열리는 
+    이번 축제는 17.9㏊에 달하는 전국 최대 규모의 444만본 1억 4000만 송이의 닭벼슬모양, 촛불모양, 
+    여우꼬리모양 등 형형색색 맨드라미가 정원을 화려하게 수놓을 예정이다. 
+  </div>
+  <div id="divImg"></div>
+</body>
+</html>
