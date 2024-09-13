@@ -25,6 +25,7 @@ h1 {
   margin-right: 15px;
   line-height: 12px;
 }
+#category li:hover{border-bottom: 5px solid black;}
 
 .selected {
   color: black !important;

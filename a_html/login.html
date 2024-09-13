@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/board.css">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <title>포레스트 리솜</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="#"><img src="images/forest.png"></a>
+      </div>
+      <div class="nav_wrap">
+        <div class="quick_menu">
+          <ul>
+            <li><a href="#">회원예약</a></li>
+            <li><a href="#">패키지 예약</a></li>
+            <li><a href="#">부대시설 예약</a></li>
+            <li><a href="#">회원가입</a></li>
+            <li><a href="#">로그인</a></li>
+          </ul>
+        </div>
+        <!-- 하부 메뉴 부분 들어감 -->
+        <script>
+          // class 찾는 방법 // 마우스가 올라가면
+          // document.querySelector(".menu").addEventListener("mouseover",function(event)){
+            // document.querySelector(".navibg").style.display = "visible"
+            // }
+            
+            function mo_over(){
+              // alert("마우스 오버");
+              
+              document.querySelector(".navbg").style.display = "block"
+            }
+            function m_click(){
+              
+              document.querySelector(".navbg").style.display = "none"
+            }
+            </script>
+
+          <div class="menu" onmouseover="mo_over()" onmouseleave="m_click()">
+            <ul>
+              <li><a href="#">포레스트</a></li>
+              <li><a href="#">스파&찜질방</a></li>
+              <li><a href="#">객실</a></li>
+              <li><a href="#">특별한 경험</a></li>
+              <li><a href="#">세미나 & 연회</a></li>
+              <li><a href="#">브랜드소개</a></li>
+            </ul>
+          </div>
+      </div>
+      </nav>
+  </header>
+
+  <!-- 하부 메뉴부분 들어감 -->
+   <div class="navbg"></div>
+
+  <!-- 서브페이지 배너부분 -->
+  <div class="sub_banner"></div>
+
+  <!-- section 부분 -->
+  <section>
+    <h1>NOTICE</h1>
+    
+    
+  </section>
+  
+  <!-- 오른쪽 채팅메뉴 -->
+  <div id="right_fixed">
+    <div class="chatting">
+      <div></div>
+      <div>채팅상담</div>
+    </div>
+    <div class="ai_chatting">
+      <div></div>
+      <div>AI 채팅상담</div>
+    </div>
+    <div class="items" >최근 본 상품(0) <span></span></div>
+    <div class="top">▲ TOP</div>
+  </div>
+</section>
+  
+</body>
+</html>
