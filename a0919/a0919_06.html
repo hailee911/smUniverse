@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>나의 체질량지수(BMI)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+    *{margin: 0; padding:  0;
+      font-family: "Nanum Gothic", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    section{width: 650px; height: 764px; padding: 20px; box-sizing: border-box; border: 1px solid black;}
+    .message{width: 610px; height: 122px; padding: 25px; margin-bottom: 25px; box-sizing: border-box; background: #f8f8f8;}
+    .message span{font-size: 14px; display: block; color: #454545; line-height: 24px; letter-spacing: -0.03em;}
+    .form{width: 610px; height: 214px; position: relative; margin: -15px 0 30px 0; padding: 25px; border: 1px solid #e8e8e8;
+      box-sizing: border-box; display: block;
+    }
+
+    .form label{font-size: 15px; font-weight: 700; margin-right: 12px; color: #454545; line-height: 24px; letter-spacing: -0.03em;}
+    .form input{margin-right: 5px; padding: 0 5px; width: 60px; height: 27px; text-align: center; border: 1px solid #ddd; vertical-align: middle;
+       background: #fff; font-size: 14px; line-height: 1em; color: #bbb; letter-spacing: 0;
+    }
+    .form .dash{color: #b7b7b7; margin: 0 15px; font-size: 16px; line-height: 24px;}
+
+    .form button{background: #0aaf6b; width: 70px; height: 27px; color: #fff; font-weight: 700; border: 0; vertical-align: top;
+      display: inline-block; position: relative; right: -81px;
+    }
+    .form #reset{background: #656565;}
+
+    .form .clearfix{width: 558px; height: 24px; margin: 10px 0 18px 0; font-size: 14px; color: #454545;
+      box-sizing: border-box; letter-spacing: -0.03em; display: block; float: left; text-align: center;
+    }
+    .form .clearfix dt{ float: left; width: 20%; }
+    .form li{font-size: 13px; font-weight: 700; list-style: none; letter-spacing: -0.03em; color: #fff;
+      float: left; height: 35px; line-height: 35px; 
+    }
+    .form ul li label{font-size: 13px; display: inline-block; width: 21%; margin-right: 12px; color: #454545;}
+    .form li label .dv1{width: 18.5%;}
+
+    .form li .low{width: 25%; background: #329ae3;}
+    .form li .regular{width: 20%; background: #95c520;}
+    .form li .overweight{width: 18%; background: #ee942a;}
+    .form li .obesity{width: 36.9%; background: #f15232;}
+  </style>
+</head>
+<body>
+  <section>
+    <div class="message">
+      <span>체질량지수는 자신의 몸무게(kg)를 키의 제곱(m)으로 나눈 값입니다. <br>
+        체질량지수는 근육량, 유전적 원인, 다른 개인적 차이를 반영하지 못하는 단점이 있음에도 불구하고 <br>
+        조사자들이나 의료인들이 가장 많이 쓰는 방법 중 하나입니다.</span>
+      </div>
+    <div class="form">
+      <form id="bmiCheck" name="bmiCheck">
+        <label>신장</label>
+        <input type="text" id="length" name="length"><span>cm</span>
+        <span class="dash">/</span>
+        <label>체중</label>
+        <input type="text" id="weight" name="weight"><span>kg</span>
+          <button type="button" onclick="btn()">계산</button>
+          <button type="reset" id="reset" onclick="rBtn()">초기화</button>
+      </form>
+      <dl class="clearfix">
+				<dt>비만도 결과</dt>
+				<dd id="resultText"></dd>
+				<dt>BMI 지수</dt>
+				<dd id="bmiNumber"></dd>
+			</dl>
+      <ul>
+        <li>
+          <label>BMI</label>
+          <label class="dv1">18.5</label>
+          <label class="dv2">23</label>
+          <label>25.00</label>
+          <ul class="clearfix">
+            <li class="low">저체중</li>
+            <li class="regular">정상</li>
+            <li class="overweight">과체중</li>
+            <li class="obesity">비만</li>
+          </ul>
+          <label>체중</label>
+        </li>
+      </ul>
+    </div>
+  </section>
+  
+</body>
+</html>
