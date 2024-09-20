@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>객체</title>
+</head>
+<body>
+  <script>
+    // //5시 30분 20초
+    // var hour = 5;
+    // var min = 30;
+    // var second = 20;
+
+    // //6시 10분 15초
+    // var hour2 = 6;
+    // var min2 = 10;
+    // var second2 = 15;
+
+    // //7시 5분 59초
+    // var hour3 = 7;
+    // var min3 = 5;
+    // var second3 = 59;
+
+    //배열 객체 newArray
+    //배열 선언 - 문자형, 숫자형, 논리형, "", null;
+
+    // var arr = [30, "안녕하세요", true];
+    // document.write(arr[0]+"<br>");
+    // document.write(arr[1]+"<br>");
+    // document.write(arr[2]+"<br>");
+
+    var t1 = [5,30,20];
+    var t2 = [6,10,15];
+    var t3 = [7,5,59];
+    var time = [t1, t2, t3];
+
+    for(var i=0; i<3; i++){
+        document.write(time[i][0]+"시" + time[i][1]+"분"+ time[i][2]+"초 <br>");
+    }
+    
+  </script>
+  
+</body>
+</html>

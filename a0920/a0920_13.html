@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배열객체</title>
+</head>
+<body>
+  <script>
+    // 이름 : 홍길동
+    // 국어 : 100
+    // 영어 : 100
+    // 수학 : 100
+    // 합계 : 300
+
+    var name = prompt("이름을 입력하세요.");
+    document.write("이름 : " + name + "<br>");
+    var kor = Number(prompt("국어점수를 입력하세요."));
+    document.write("국어 점수 : " + kor + "<br>");
+    var eng = Number(prompt("영어점수를 입력하세요."));
+    document.write("영어 점수 : " + eng + "<br>");
+    var mat = Number(prompt("수학점수를 입력하세요."));
+    document.write("수학 점수 : " + mat + "<br>");
+
+    var total = kor+eng+mat;
+    var avg = (total/3).toFixed(2);
+
+    document.write("합계 : " + total +"<br>");
+    document.write("평균 : " + avg +"<br>");
+
+    // var arr = new Array(3); //arr변수 3개의 변수를 생성
+    // arr[0] = 100;
+    // arr[1] = 99;
+    // arr[2] = 98;
+    // document.write(arr[0]);
+
+    // 1개 변수를 사용해서 5개의 숫자를 입력받아 변수에 저장하고 출력하시오.
+    // var n = prompt("숫자를 입력하세요");
+    // var n1 = prompt("숫자를 입력하세요");
+    // var n2 = prompt("숫자를 입력하세요");
+    // var n3 = prompt("숫자를 입력하세요");
+    // var n4 = prompt("숫자를 입력하세요");
+
+    // document.write(n+ n1+ n2+ n3+ n4);
+
+    //배열생성
+    // var arr = new Array(5);
+    // for(var i=0;i<5;i++){
+    //   arr[i] = Number(prompt("숫자를 입력하세요."));
+    //   document.write(arr[i]+"<br>");
+    // }
+
+    // var len = Number(prompt("길이 설정"));
+    // var arr = new Array(len);
+    // var j = 0;
+    // for(var i = 0; i < arr.length; i++){
+    //   arr[i] = prompt((i + 1)+"번째 숫자를 입력하세요");
+    // }
+
+    // while(j<arr.length){
+    //   document.write("출력하기 = " + arr[j] + "<br>");
+    //   j++
+    // }
+
+
+  </script>
+
+</body>
+
+</html>

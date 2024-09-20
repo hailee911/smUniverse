@@ -7,14 +7,29 @@
 </head>
 <body>
   <script>
+    //숫자 3개를 입력받아 가장 큰 수를 출력하시오.
+    var a = Number(prompt("숫자1를 입력 : "));
+    var b = Number(prompt("숫자2를 입력 : "));
+    var c = Number(prompt("숫자3를 입력 : "));
+    
+    var result = (a>b)?((a>c)?a:c):((b>c)?b:c);
+    document.write(result);
+
+    //숫자 1개를 입력받아 짝수 홀수 확인 출력
+    //입력받은 숫자를 %2 == 0 짝수 ==1 홀수
+    // var n1 = Number(prompt("숫자를 입력 : "));
+
+    // var result = (n1%2 == 0)?"짝수입니다.":"홀수입니다.";
+    // document.write(result);
+
 
     //두수를 입력받아, 두수를 출력하시오.
-    var n1 = Number(prompt("숫자를 입력 : "));
-    var n2 = Number(prompt("숫자2를 입력 : "));
-    document.write("숫자 1 : " + n1 + " 숫자 2 : " + n2 +"<br>");
+    // var n1 = Number(prompt("숫자를 입력 : "));
+    // var n2 = Number(prompt("숫자2를 입력 : "));
+    // document.write("숫자 1 : " + n1 + " 숫자 2 : " + n2 +"<br>");
 
-    var result = (n1>n2)?n1:n2;
-    document.write("더 큰수 : " +result+"<br>");
+    // var result = (n1>n2)?n1:n2;
+    // document.write("더 큰수 : " +result+"<br>");
     
 
     // var a = 10;

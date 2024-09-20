@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>while</title>
+  <style>
+    .red {
+      color: red;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .blue {
+      color: blue;
+      font-weight: 600;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    //1-20까지 숫자를 출력하는데, 홀수는 red 짝수는 blue 출력
+    //<p>를 사용해서 출력하시오.
+    var n = 1;
+    while (n <= 20) {
+      if (n % 2 == 0) {
+        document.write("<p class = 'blue'>" + n + "</p>");
+      } else {
+        document.write("<p class = 'red'>" + n + "</p>");
+      }
+      n++;
+    }
+  </script>
+
+</body>
+
+</html>
