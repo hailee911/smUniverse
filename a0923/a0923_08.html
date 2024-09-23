@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>객체</title>
+</head>
+
+<body>
+  <script>
+    // 날짜 객체를 사용해 오늘 날짜를 출력하시오.
+    // 출력 : 2024/09/23/월요일
+
+    var today = new Date();
+    var year = today.getFullYear();
+    var mth = today.getMonth();
+    var month = mth + 1;
+    if (month < 10) month = '0' + month;
+    var date = today.getDate();
+    if (date < 10) date = '0' + date;
+
+    var day = today.getDay();
+    var txtDay = ["일요일", "월요일", "화요일",
+      "수요일", "목요일", "금요일", "토요일"];
+
+    document.write(year + "/" + month + "/" + date + "/" + txtDay[day] +"<br>");
+
+    // 5자리 숫자를 입력받아 숫자의 합을 구하시오 12345 = 15
+    // charAt 사용하시오 -> Number
+    var num = prompt("5자리 숫자를 입력하세요.");
+    var total = 0;
+    for(var i=0; i<num.length; i++){
+      total += Number(num.charAt(i));
+    }
+    document.write("합계: "+total);
+
+    
+    
+
+
+
+  </script>
+
+</body>
+
+</html>

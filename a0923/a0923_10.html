@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scroll 객체 - 쉽지 않음</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  #wrap {
+    width: 2000px;
+    height: 3000px;
+    border: 1px solid black;
+  }
+  #d_wrap{
+    position: fixed;
+  }
+  #txt{
+    width: 500px;
+    height: 500px;
+    font-size: 30px; text-align: center;
+  }
+</style>
+
+
+<body>
+  <div id="wrap">
+    <div id="d_wrap">
+      <div id="txt">000</div>
+      <button id="b01" onclick="btn1()">500 이동</button>
+      <button onclick="btn2()">1000 이동</button>
+      <button onclick="btn3()">2000 이동</button>
+    </div>
+  </div>
+  <button onclick="topBtn()">처음으로 가기</button>
+
+  <script>
+    
+    window.addEventListener("scroll", function(){
+      
+      document.getElementById("txt").innerText = window.scrollY
+
+      if (window.scrollY >= 2000 ){
+        document.getElementById("txt").style.background = "url('images/a01.jpg')";
+      }else if(window.scrollY >= 1000){
+        document.getElementById("txt").style.background = "url('images/a02.jpg')";
+      }else{
+        document.getElementById("txt").style.background = "url('images/a03.jpg')";
+      }
+      
+    })
+
+    function btn1(){
+      window.scrollTo({top: 500, behavior:"smooth"});
+    }
+    function btn2(){ 
+      window.scrollTo({top: 1000, behavior:"smooth"});
+    }
+    function btn3(){
+      window.scrollTo({top: 2000, behavior:"smooth"});
+    }
+
+    function topBtn(){
+      window.scrollTo({top: 0, behavior: "smooth"});
+    }
+
+
+  </script>
+
+</body>
+
+</html>
