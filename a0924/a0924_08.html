@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      width: 300px; height: 200px; border: 1px solid black;
+      background: yellow;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    var color = ["yellow","green","red","blue"];
+    var count = 0;
+
+    function next(){
+      count++;
+      // 3이상이면 0으로
+
+      console.log(count);
+      document.querySelector("#back").style.backgroundColor = color[count];
+      if(count >= 3){
+        count = 0;
+      }
+    }
+    function prev(){
+      count--;
+      // 0미만이 되면 3으로
+      if(count < 0){
+        count = 3;
+      }
+      console.log(count);
+      document.querySelector("#back").style.backgroundColor = color[count];
+      
+    }
+  </script>
+  <div id="back">
+    <button onclick="prev()">이전</button>
+    <button onclick="next()">다음</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>함수 다음 이전</title>
+  <style>
+    #wrap {
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+      overflow: hidden;
+    }
+
+    #img {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    var count = 1;
+
+    function next() {
+      count++;
+      // 3이상이면 0으로
+      if (count > 4) {
+        count = 1;
+      }
+      //html 태그의 속성변경 - setAttribute
+      document.querySelector("#img").setAttribute("src", "images/i" + count + ".jpg");
+
+    }
+    function prev() {
+      count--;
+      // 0미만이 되면 3으로
+      if (count < 1) {
+        count = 4;
+      }
+      document.querySelector("#img").setAttribute("src", "images/i" + count + ".jpg");
+
+    }
+  </script>
+  <div id="wrap">
+    <img id="img" src="images/i1.jpg">
+  </div>
+  <button onclick="prev()">이전</button>
+  <button onclick="next()">다음</button>
+
+</body>
+
+</html>
