@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <title>Document</title>
+  <script>
+    // 제이쿼리 구문
+    $(function(){
+
+      // 슬라이드 닫힘
+      $(".btn2").click(function(){
+        $(".box").stop();
+        $(".box").slideUp(1000,"linear",function(){});
+      });
+
+      $(".btn3").on("click",function(){
+        $(".box").fadeIn(1000,"swing",function(){});
+      });
+
+      // 슬라이드 열림
+      $(".btn1").click(function(){
+        // $(".box").slideDown(1000,"linear",function(){});
+        $(".box").slideDown(1000,"swing",function(){});
+      });
+
+      // toggle 효과
+      $(".btn4").on("click",function(){
+        $(".box").stop();
+        $(".box").slideToggle(500,"linear");
+      });
+
+
+      
+
+
+      // $("#in").mouseover(function(){
+      //   $(this).css({"border":"4px solid black","background":"yellow"});
+      // });
+
+      // $("#in").on("mouseover focus",function(){
+      //   $(this).css({"border":"4px solid black","background":"yellow"});
+      // });
+
+      // $("#in").off("mouseover");
+
+
+      // $("#in").trigger("mouseover");
+
+      // $("#in").mouseout(function(){
+      //   $(this).css({"border":"1px solid black","background":"none"});
+      // });
+
+    }); // 제이쿼리 구문
+  </script>
+  <style>
+    .content{
+      width: 400px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <button class="btn1">슬라이드 펼침</button>
+  <button class="btn2">슬라이드 닫힘</button>
+  <button class="btn3">페이드 in</button>
+  <button class="btn4">toggle</button>
+  <br>
+
+  <div class="box">
+    <div class="content">
+      그룹 마마무 멤버 화사(본명 안혜진)가 과거 화제가 됐던 노브라 공항 패션에 대해 “이슈가 될 줄 몰랐다”며 “너무 불편해서 (브래지어를) 착용하지 않은 것”이라고 말했다.
+    </div>
+  </div>
+</body>
+</html>
