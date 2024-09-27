@@ -13,11 +13,21 @@
 	<script>
 		$(function () {
 			$("#membership").click(function () {
-				if ($("input[name='f_agree']:checked").length < 1 || $("input[name='s_agree']:checked").length < 1 || $("input[name='t_agree']:checked").length < 1) {
-					alert("필수 항목에 동의해 주세요.");
-					return false;
+				if(confirm("모두 동의를 진행할까요?")){
+					$("input[value='agree']").each(function(){
+						$(this).prop("checked",true);
+					})
+				}else{
+					$("input[value='disagree']").each(function(){
+						$(this).prop("checked",true);
+					})
 				}
-				agree_frm.submit();
+
+				// if ($("input[name='f_agree']:checked").length < 1 || $("input[name='s_agree']:checked").length < 1 || $("input[name='t_agree']:checked").length < 1) {
+				// 	alert("필수 항목에 동의해 주세요.");
+				// 	return false;
+				// }
+				// agree_frm.submit();
 			});
 		});
 	</script>

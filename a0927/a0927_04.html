@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <title>Document</title>
+  <style>
+    #wrap {
+      width: 800px;
+      height: 500px;
+      border: 3px solid black;
+      margin-top: 30px;
+    }
+
+    #main {
+      width: 800px;
+      margin: 30px auto;
+      text-align: center;
+    }
+  </style>
+  <script>
+    //jquery
+    $(function () {
+      let labelArr = ['버논', '부승관', '우지', '디노', '원우', '민규', '에스쿱스', '도겸', '정한', '호시']
+      let dataArr = [60, 100, 30, 50, 20, 30, 80, 70, 40, 10]
+      //btn
+      $(document).on("click", "#btn", function () {
+        alert("데이터 불러오기 버튼");
+
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labelArr,
+            datasets: [{
+              label: '학생 성적 프로그램',
+              data: dataArr,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        }); //chart
+      }); //btn
+
+      $(document).on("click", "#stuBtn", function () {
+
+        $.ajax({
+          url: "js/stuData.json",
+          type: "get",
+          data: "",
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+          },
+          error: function () {
+            alert("실패");
+          }
+        });
+      });
+    });//jquery
+
+
+  </script>
+
+</head>
+
+<body>
+  <div id="main">
+    <button id="btn">데이터 불러오기</button>
+    <button id="stuBtn">학생 데이터</button>
+    <br>
+    <h1>학생성적프로그램</h1>
+    <div id="wrap">
+      <canvas id="myChart"></canvas>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
