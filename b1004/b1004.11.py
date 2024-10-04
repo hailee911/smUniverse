@@ -91,6 +91,7 @@ while True:
         print("-"*60)
         for s in i:
           print(s, end="\t")
+      # 카운트 넣기
       else:
         print(f"{name} 학생을 찾지 못했습니다.")
         break
@@ -106,7 +107,7 @@ while True:
         choice = input("이 학생의 성적을 삭제하시겠습니까? 예(1)/아니오(0) >> ")
         if choice == "1":
           print(f"{name} 학생의 성적을 삭제합니다.")
-          i = []
+          students.remove(i)
 
         elif choice == "0":
           print("학생 성적 삭제를 취소했습니다.")
@@ -120,6 +121,7 @@ while True:
 
   # 미해결 부분
   # 학생을 찾지 못했습니다. -> 찾은 후 else 부분도 출력됨
-  # 학생 성적 출력 -> 삭제를 해도 성적 출력 부분에는 삭제되지 않고 뜸 찾기하면 안뜨긴 함\
+
   # 왜 되다가 안되는지 이해 x
   # 순위 (랭크) 초이스 부분 안만듬
+  # 번호 리셋시키기
