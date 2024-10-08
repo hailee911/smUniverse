@@ -66,8 +66,8 @@ while True:
 
   elif choice == "2":
     print("[ 학생 성적 수정]")
+    name = input("수정하고자 하는 학생 이름을 적어주세요. >>")
 
-    
   elif choice == "7":
     while True:
       print("[ 학생 성적 정렬 ]")
