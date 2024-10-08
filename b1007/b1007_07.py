@@ -3,10 +3,6 @@ import random
 # 로또
 
 
-
-random.shuffle()
-
-
 a_list = [
   [0,1,0],
   [0,0,1],
