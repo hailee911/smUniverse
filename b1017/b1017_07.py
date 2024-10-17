@@ -42,12 +42,14 @@ def m_register(members):
   print(m_list)
 
 def sign_in(members):
-  chk = 0
+  global s
   id = input("아이디 >> ")
   pw = input("비밀번호 >> ")
+  chk = 0
   for m in members:
     if m['id'] == id and m['pw'] == pw:
       print("로그인에 성공했습니다.")
+      s = m
       chk = 1
       main_shop()
     elif chk == 0:
@@ -57,10 +59,8 @@ def sign_in(members):
 def main_shop():
     while True:
       print("           [ SM-SHOP ]")
-      for m in members:
-        
-        print(f"                       닉네임:{m['nicName']}님")
-        print(f"                       금액 :{m['money']:,} 원")
+      print(f"                       닉네임:{s['nicName']}님")
+      print(f"                       금액 :{s['money']:,} 원")
       print("1. 삼성TV - 2,000,000")
       print("2. LG냉장고 - 3,000,000")
       print("3. 하만카돈스피커 - 500,000")
