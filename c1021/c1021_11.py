@@ -17,7 +17,7 @@ with open("c1021/test.html","w",encoding="utf-8") as f:
 # print(tit)
 # print(singer)
 
-lists = soup.find("li",{"class":"issue_list04"}).next
+lists = soup.find("li",{"class":"issue_list04"})
 # print(lists)
 # print(lists.find("span",{"class":"title"}))
 # print(lists.find("span",{"class":"ellipsis"}))
