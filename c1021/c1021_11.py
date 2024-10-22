@@ -22,7 +22,9 @@ lists = soup.find("li",{"class":"issue_list04"})
 # print(lists.find("span",{"class":"title"}))
 # print(lists.find("span",{"class":"ellipsis"}))
 
-for idx, list in enumerate(lists):
-  t = lists.find("span",{"class":"title"}).text
-  s = lists.find("span",{"class":"ellipsis"}).text
-  print(idx+1,".",t ,"-", s)
+# for idx, list in enumerate(lists):
+t = lists.find("a",{"class":"mlog link-thumb"})
+# s = lists.find("span",{"class":"ellipsis"}).text
+
+print(t)
+  # print(idx+1,".",t ,"-", s)
