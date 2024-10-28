@@ -1,11 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
-import csv
 # email 발송관련
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
+
 url = 'https://news.naver.com/main/ranking/popularDay.naver'
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"}
 res = requests.get(url,headers=headers)
