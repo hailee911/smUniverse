@@ -303,7 +303,7 @@ select * from employees where emp_name like '%l__';
 
 -- 첫번째 D
 
-select * from employees where emp_name like 'D%';
+select * from employees where emp_name like '%a%';
 
 
 
