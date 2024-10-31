@@ -76,7 +76,7 @@ while True:
       title = "임시 비밀번호 생성"
       content = f"임시 비밀번호 : {ran_num}"
 
-     # 설정
+      # 설정
       msg = MIMEText(content)
       msg['Subject'] = title
       msg["From"] = sendEmail
