@@ -258,4 +258,16 @@ select to_char(hire_date,'yyyy-mm-dd') from employees where substr(hire_date,4,2
 -- 순서에 없는 변환글자는 삭제처리
 select 'axyzxxy',translate('axyzxxy','xy','ab') from dual;
 
+-- length() ; 문자열 길이
+-- students 테이블 name 글자길이가 5자 이상인 학생만 출력하시오.
+select name from students where length(name)>=5;
+
+-- 사원 월급의 합 평균을 구하시오.
+select sum(salary),avg(salary) from employees;
+-- 영어점수의 합 평균 최대값 최소값을 구하시오
+select sum(eng),avg(eng),max(eng),min(eng) from students;
+-- student 테이블에서 홍길동 등록일 ; 2023년 12월 02일
+select name, to_char(sdate,'"등록일: "yyyy"년" mm"월" dd"일"') from students;
+
+
 
