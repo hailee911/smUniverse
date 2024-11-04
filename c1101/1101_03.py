@@ -43,7 +43,14 @@ while True:
     conn.close()
     print(f'{name} 학생의 성적이 등록되었습니다.')
   elif choice == '2':
-    print()
+    print('[ 학생 성적 출력 ]')
+    conn = connects()
+    cursor = conn.cursor()
+    sql = "select name,kor,eng,math,total,avg,rank,to_char(sdate,'yyyy/mm/dd') from students"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    for row in rows:
+      print(row)
 
   elif choice == '3':
     name = input('찾고자 하는 학생의 이름을 입력하세요.>> ')
