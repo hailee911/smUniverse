@@ -86,7 +86,6 @@ while True:
     where a.no = b.no)'
     cursor.execute(sql)
     conn.commit()
-    conn.close()
     print('등수처리 완료')
   elif choice == '0':
     print('프로그램 종료')
