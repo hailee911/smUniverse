@@ -25,7 +25,10 @@ while True:
   print('1. 학생 성적 입력')
   print('2. 학생 성적 출력')
   print('3. 학생 성적 검색')
+  print('4. 학생 성적 정렬')
+  print('5. 등수처리')
   choice = input('원하는 숫자 입력>> ')
+
   if choice == '1':
     name = input('이름을 입력하세요.>> ')
     kor = int(input('국어성적 입력>> '))
@@ -34,7 +37,6 @@ while True:
     total = kor+eng+math
     avg = round(total/3,2)
     rank = 0
-
     conn = connects()
     cursor = conn.cursor()
     sql = 'insert into students values(students_seq.nextval,:name,:kor,:eng,:math,:total,:avg,:rank,sysdate)'
@@ -42,13 +44,17 @@ while True:
     conn.commit()
     conn.close()
     print(f'{name} 학생의 성적이 등록되었습니다.')
+
   elif choice == '2':
     print('[ 학생 성적 출력 ]')
     conn = connects()
     cursor = conn.cursor()
-    sql = "select name,kor,eng,math,total,avg,rank,to_char(sdate,'yyyy/mm/dd') from students"
+    sql = "select name,kor,eng,math,total,round(avg,2),rank,to_char(sdate,'yyyy/mm/dd') from students"
     cursor.execute(sql)
     rows = cursor.fetchall()
+    if len(rows) < 1:
+      print('데이터가 없습니다.')
+      break
     for row in rows:
       print(row)
 
@@ -56,14 +62,32 @@ while True:
     name = input('찾고자 하는 학생의 이름을 입력하세요.>> ')
     conn = connects()
     cursor = conn.cursor()
-    sql = "select name,kor,eng,math,total,avg,rank,to_char(sdate,'yyyy/mm/dd') from students where name = :name"
-    cursor.execute(sql, name=name)
-    row = cursor.fetchone()
-    if row is None:
+    search = '%'+name+'%'
+    sql = "select name,kor,eng,math,total,avg,rank,to_char(sdate,'yyyy/mm/dd') from students where name like :search"
+    cursor.execute(sql, search=search)
+    rows = cursor.fetchall()
+    if rows is None:
       print('찾는 학생이 없습니다.')
     else:
-      print(row)
+      for row in rows:
+        for i in row:
+          print(i,end='\t')
+        print()
+      print()
 
+  elif choice == '4':
+    pass
+  elif choice == '5':
+    conn = connects()
+    cursor = conn.cursor()
+    sql = 'update students a set rank = \
+    (select ranks from \
+    (select no,rank()over(order by avg desc)ranks from students)b \
+    where a.no = b.no)'
+    cursor.execute(sql)
+    conn.commit()
+    conn.close()
+    print('등수처리 완료')
   elif choice == '0':
     print('프로그램 종료')
     break
