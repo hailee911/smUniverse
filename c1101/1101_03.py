@@ -10,6 +10,8 @@
 import oracledb
 import datetime
 
+s_title = ['번호','이름','국어','영어','수학','합계','평균','등수','등록일']
+
 # db 연결함수
 def connects():
   user = 'ora_user'
@@ -75,20 +77,86 @@ while True:
         print()
       print()
 
-  elif choice == '4':
-    pass
-  elif choice == '5':
+  elif choice == "4":
+    print("[ 학생성적 정렬 ]")
+    print("1.이름순차정렬")      
+    print("2.이름역순정렬")
+    print("2.이름역순정렬")
+    choice  = input("원하는 번호를 입력하세요.>> ") 
+    if choice == "1":
+      sql = "select no,name,kor,eng,math,total,round(avg,2),\
+            rank,to_char(sdate,'yyyy-mm-dd') \
+            from students order by name"
+    elif choice == "2":
+      sql = "select no,name,kor,eng,math,total,round(avg,2),\
+            rank,to_char(sdate,'yyyy-mm-dd') \
+            from students order by name desc"
+    elif choice == "3": #합계순차정렬
+      sql = "select no,name,kor,eng,math,total,round(avg,2),\
+            rank,to_char(sdate,'yyyy-mm-dd') \
+            from students order by total"
+    elif choice == "4": #합계역순정렬
+      sql = "select no,name,kor,eng,math,total,round(avg,2),\
+            rank,to_char(sdate,'yyyy-mm-dd') \
+            from students order by total desc"
+          
+    ##### 출력부분 #####
+    # db연결
     conn = connects()
     cursor = conn.cursor()
-    sql = 'update students a set rank = \
-    (select ranks from \
-    (select no,rank()over(order by avg desc)ranks from students)b \
-    where a.no = b.no)'
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    print(f"[ 개수 : {len(rows)} ]")
+    for s in s_title:
+      print(s,end='\t')
+    print()  
+    print("-"*80)
+    if len(rows)<1: 
+      print("데이터가 없습니다.")
+      break
+    for row in rows:
+      for r in row:
+        print(r,end="\t")
+      print()
+    print()
+    print("데이터 출력완료!") 
+    
+  elif choice =="5":
+    print("[ 학생등수처리 ]")
+    sql = "update students a set rank = (\
+          select ranks from \
+      ( select no,rank() over(order by avg desc) ranks from students\
+      ) b where a.no = b.no )"
+      
+    ##### 출력부분 #####
+    
+    # db연결
+    conn = connects()
+    cursor = conn.cursor()
     cursor.execute(sql)
     conn.commit()
-    print('등수처리 완료')
-  elif choice == '0':
-    print('프로그램 종료')
+    print("등수처리가 완료되었습니다.")
+    print()
+    #----------------------------------
+    sql = "select no,name,kor,eng,math,total,round(avg,2),rank,to_char(sdate,'yyyy-mm-dd') from students"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    print(f"[ 개수 : {len(rows)} ]")
+    for s in s_title:
+      print(s,end='\t')
+    print()  
+    print("-"*80)
+    if len(rows)<1: 
+      print("데이터가 없습니다.")
+      break
+    for row in rows:
+      for r in row:
+        print(r,end="\t")
+      print()
+    print()
+    print("데이터 출력완료!")  
+  elif choice == "0":
+    print("프로그램을 종료합니다.")
     break
 
 # conn = connects()

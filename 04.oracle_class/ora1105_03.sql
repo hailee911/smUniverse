@@ -87,6 +87,11 @@ select no,name,kor,eng,math,total,round(avg,2),rank,to_char(sdate,'yyyy/mm/dd') 
 
 select total, rank() over(order by total desc) from students;
 
-update students set rank = select ranks from (select total, rank()over(order by total desc)ranks from students);
+update students a set rank = 
+(select ranks from
+(select no,rank()over(order by avg desc)ranks from students)b
+where a.no = b.no);
+
+select * from students order by rank;
 
 
