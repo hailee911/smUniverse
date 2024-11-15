@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>학생등록페이지</title>
+</head>
+<body>
+  <h2><a href='/'>학생등록페이지</a></h2>
+  <!-- url (링크방식) : students/save/ -->
+  <form action="{% url 'students:save' %}" method="post" name="frm">
+    {% csrf_token %} {% comment %} 꼭 넣어야함 {% endcomment %}
+    <label>학생이름</label>
+    <input type='text' name='name'><br>
+    <label>학과</label>
+    <input type='text' name='major'><br>
+    <label>학년</label>
+    <input type='text' name='grade'><br>
+    <label>나이</label>
+    <input type='text' name='age'><br>
+    <label>성별</label>
+    <input type='text' name='gender'><br>
+    <input type='submit' value='저장'>
+    <input type='reset' value='취소'>
+  </form>
+
+</body>
+</html>
