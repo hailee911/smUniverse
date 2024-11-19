@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>학생리스트</title>
+  <style>
+    table,th,td{border: 1px solid black; border-collapse: collapse; text-align: center;}
+    .main{margin: 30px auto; width: 400px;}
+    h2{margin-left: 187px; margin-top:50px; padding-top: 30px;}
+    h4{padding: 10px,10px; margin-left: 192px; margin-top: 20px;}
+    table{width: 500px; height: 20px; margin-bottom: 20px;}
+    #hbtn{margin: 20px,10px;}
+  </style>
+</head>
+<body>
+  <div class='main'>
+    <h2>학생리스트</h2>
+    <h4>등록인원 : {{slist.count}} 명</h4>
+    <table>
+      <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>전공</th>
+        <th>학년</th>
+        <th>수정</th>
+        <th>식제</th>
+      </tr>
+      {% for s in slist %}
+      <tr>
+        <td>{{s.id}}</td>
+        <td>{{s.name}}</td>
+        <td>{{s.major}}</td>
+        <td>{{s.grade}}</td>
+        {% comment %} 난 이제 지쳤어요 땡벌 {% endcomment %}
+        <td><button onclick=>수정</button></td>
+        <td><button>삭제</button></td>
+      </tr>
+      {% endfor %}
+    </table>
+    <a href='/' id='hbtn'><button type='button'>홈으로</button></a>
+    <a href='/students/write/' id='hbtn'><button type='button'>학생등록</button></a>
+  </div>
+    
+</body>
+</html>
