@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>쿠키만들기</title>
+</head>
+<body>
+  <h2>내가만든쿠키</h2>
+  <form action= "{% url 'member:cookWrite' %}" method='post' name='loginFrm'>
+    {% csrf_token %}
+    <label>쿠키Key</label>
+    <input type='text' name='ckey' id='ckey'><br>
+    <label>쿠키Value</label>
+    <input type='text' name='cval' id='cval'><br>
+    <input type='submit' value='쿠키저장'>
+  </form>
+  
+</body>
+</html>
