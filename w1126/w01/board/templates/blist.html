@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <title>게시판</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+  <link rel="stylesheet" href="{% static '/css/notice_list.css' %}">
+  <style>a{text-decoration: none;}</style>
+  <script>
+    if("{{dmsg}}" != ""){
+      alert("{{dmsg}}번 게시글이 삭제되었습니다.")
+      location.href = "/board/blist/";
+    }
+  </script>
+</head>
+<body>
+<section>
+    <h1>NOTICE</h1>
+    <div class="wrapper">
+      <form action="/search" name="search" method="post">
+        <select name="category" id="category">
+          <option value="0">전체</option>
+          <option value="title">제목</option>
+          <option value="content">내용</option>
+        </select>
+
+        <div class="title">
+          <input type="text" size="16">
+        </div>
+  
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
+
+    <table>
+      <colgroup>
+        <col width="15%">
+        <col width="45%">
+        <col width="15%">
+        <col width="15%">
+        <col width="10%">
+      </colgroup>
+      <!-- 제목부분 -->
+      <tr>
+        <th>No.</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회수</th>
+      </tr>
+      <!-- 내용부분 -->
+      {% if blist %}
+        {% for board in blist %}
+        <tr>
+          <td><span class="table-notice">{{board.bno}}</span></td>
+          <td class="table-title">
+            <a href="/board/bview/{{board.bno}}/?npage={{npage}}">
+            {% if board.bindent > 0 %}
+              {% for i in ""|rjust:board.bindent %}└{% endfor %}
+            {% endif %}
+              {{board.btitle}}
+            </a>
+          </td>
+          <td>{{board.member.name}}</td>
+          <td>{{board.bdate|date:'Y-m-d H:i'}}</td>
+          <td>{{board.bhit}}</td>
+        </tr>
+        {% endfor %}
+      {% else %}
+      <tr>
+        <td colspan='5'>데이터가 없습니다.</td>
+      </tr>
+      {% endif %}
+      
+    </table>
+
+    {% comment %}
+      count : 총페이지 수
+      .has_previous : 이전페이지 있는지 확인 (T/F)
+      .previous_page_number : 바로 이전페이지 가져오기 (번호가져오기)
+      .next_page_number : 바로 다음페이지 가져오기 (번호가져오기)
+      .has_next : 다음페이지 있는지 확인 (T/F)
+      .num_pages : 총페이지 수 (번호가져오기)
+      .page_range : 총페이지 리스트
+    {% endcomment %}
+
+    <ul class="page-num">
+      {% comment %} 이전페이지 확인 {% endcomment %}
+      {% if blist.has_previous %}
+      <a href="/board/blist/?npage=1"><li class="first"></li></a>
+      <a href="/board/blist/?npage={{blist.previous_page_number}}"><li class="prev"></li></a>
+      {% else %}
+      <li class="first"></li>
+      <li class="prev"></li>
+      {% endif %}
+      {% comment %} 순차적 페이지 넘버링 {% endcomment %}
+      {% for page in blist.paginator.page_range %}
+      {% if page != npage %}
+      <a href="/board/blist/?npage={{page}}"><li class="num"><div>{{page}}</div></li></a>
+      {% else %}
+      <li class="num on"><div>{{page}}</div></li>
+      {% endif %}
+      {% endfor %}
+
+      {% comment %} 이후페이지 확인 {% endcomment %}
+      {% if blist.has_next %}
+      <a href="/board/blist/?npage={{blist.next_page_number}}"><li class="next"></li></a>
+      <a href="/board/blist/?npage={{blist.paginator.num_pages}}"><li class="last"></li></a>
+      {% else %}
+      <li class="next"></li>
+      <li class="last"></li>
+      {% endif %}
+    </ul>
+
+    <a href="/board/bwrite/"><div class="write">쓰기</div></a>
+    <a href="/"><div class="write">홈으로</div></a>
+  </section>
+
+</body>
+</html>
