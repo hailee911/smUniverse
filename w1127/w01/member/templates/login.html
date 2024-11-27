@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <title>로그인</title>
+  <script>
+    //아이디와 패스워드가 일치하지 않을 때
+    if('{{login_msg}}' != ''){
+        alert('{{login_msg}}');
+    }
+    function loginBtn(){
+      if ($("#uId").val().length < 2){
+          alert('아이디는 2자리 이상 입력하셔야 합니다.')
+          $("#uId").focus();
+          return false;
+      }
+      alert("로그인 되었습니다.")
+      mfrm.submit()
+  }
+</script>
+</head>
+<body>
+  <h2>로그인</h2>
+  <form action="{%url 'member:login'%}" method='post' name='mfrm'>
+    {% csrf_token %}
+    <span class="input_box">
+      <input type="text" name="id" id="uId" placeholder="아이디"><br>
+    </span>
+    <span class="input_box">
+      <input type="text" name="pw" id="uPw" placeholder="패스워드"><br><br>
+    </span>
+    <input class="btn_login" type="button" onclick="loginBtn()" value="로그인">
+  </form>
+  
+</body>
+</html>

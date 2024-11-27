@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <title>멤버등록</title>
+  <script>
+    $(function(){
+      $(".register").click(function(){
+        if ($("#id").val().length <2){
+          alert("아이디 2자리 이상 입력해주세요.")
+          $("#id").focus()
+          return false;
+        }
+        alert("등록되었습니다.")
+        regFrm.submit();
+      })
+    })
+  </script>
+</head>
+<body>
+  <h2>멤버등록</h2>
+  <form action="{%url 'member:reg' %}" name='regFrm' method="post">
+    {% csrf_token %}
+    <label for="id">아이디</label>
+    <input type="text" name="id" id="id"><br><br>
+    <label for="pw">패스워드</label>
+    <input type="password" name="pw" id="pw"><br><br>
+    <label for="name">이름</label>
+    <input type="text" name="name" id="name"><br><br>
+    <label for="age">나이</label>
+    <input type="text" name="age" id="age"><br><br>
+    <label for="role">가족관계</label>
+    <input type="text" name="role" id="role"><br><br>
+    
+    <button type="button" onclick='' class='register'>등록</button>
+    <button type="button" class='cancel' onclick="location.href='/'">취소</button>
+  </form>
+  
+  
+</body>
+</html>

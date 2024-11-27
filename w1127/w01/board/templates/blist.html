@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<title>게시판</title>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+<link rel="stylesheet" href="{% static '/css/style.css' %}">
+{% comment %} <link rel="stylesheet" href="{% static '/css/notice_list.css' %}"> {% endcomment %}
+<style>
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  section {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .wrapper form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  form select, form input {
+    padding: 5px;
+    margin-right: 5px;
+    font-size: 1rem;
+  }
+  form button {
+    padding: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  th {
+    background-color: #f8f9fa;
+    text-align: left;
+    padding: 10px;
+    font-weight: bold;
+  }
+  td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+  }
+  .table-title a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+  }
+  .table-title a:hover {
+    color: #007bff;
+  }
+  .table-notice {
+    font-weight: bold;
+    color: #555;
+  }
+  .page-num {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+  .page-num li {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
+  .page-num .on {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  .write {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #28a745;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  .write:hover {
+    background-color: #218838;
+  }
+
+  .post {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    overflow: hidden;
+  }
+  
+  .date {
+    font-weight: bold;
+    font-size: 1.7rem;
+    margin-bottom: 5px;
+  }
+  
+  .content {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .title, .description, .author {
+    margin-bottom: 5px;
+  }
+  
+  .title strong, .description strong, .author strong {
+    color: #333;
+  }
+
+  
+</style>
+</head>
+<body>
+<section>
+    <h1>NOTICE</h1>
+    <div class="wrapper">
+      <form action="/search" name="search" method="post">
+        <select name="category" id="category">
+          <option value="0">전체</option>
+          <option value="title">제목</option>
+          <option value="content">내용</option>
+        </select>
+        <div class="title">
+          <input type="text" size="16">
+        </div>
+        <button disabled="disabled">▼</button>
+      </form>
+    </div>
+
+      {% if blist %}
+        {% for board in blist %}
+          <div class="post">
+            <div class="date">
+              {{ board.bdate|date:'Y-m-d' }}
+            </div>
+          <hr>
+          <div class="content">
+            <div class="title"><strong>제목:</strong> {{ board.btitle }}</div>
+            <div class="description"><strong>내용:</strong> {{ board.bcontent }}</div>
+            <div class="author"><strong>작성자:</strong> {{ board.member.role }}</div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="no-posts">게시글이 없습니다.</div>
+      {% endif %}
+
+
+    <ul class="page-num">
+      {% if blist.has_previous %}
+      <a href="/board/blist/?npage=1"><li class="first"><<</li></a>
+      <a href="/board/blist/?npage={{blist.previous_page_number}}"><li class="prev"><</li></a>
+      {% else %}
+      <li class="first disabled"><<</li>
+      <li class="prev disabled"><</li>
+      {% endif %}
+      {% for page in blist.paginator.page_range %}
+      {% if page != npage %}
+      <a href="/board/blist/?npage={{page}}"><li class="num">{{page}}</li></a>
+      {% else %}
+      <li class="num on">{{page}}</li>
+      {% endif %}
+      {% endfor %}
+      {% if blist.has_next %}
+      <a href="/board/blist/?npage={{blist.next_page_number}}"><li class="next">></li></a>
+      <a href="/board/blist/?npage={{blist.paginator.num_pages}}"><li class="last">>></li></a>
+      {% else %}
+      <li class="next disabled">></li>
+      <li class="last disabled">>></li>
+      {% endif %}
+    </ul>
+
+    <a href="/board/bwrite/" class="write">작성하기</a>
+    <a href="/" class="write">홈으로</a>
+</section>
+</body>
+</html>
