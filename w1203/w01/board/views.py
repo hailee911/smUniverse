@@ -1,7 +1,33 @@
 from django.shortcuts import render
 from board.models import Board
 from comment.models import Comment
-from django.http import HttpResponse 
+from member.models import Member
+from django.http import HttpResponse, JsonResponse 
+# 게시글저장
+# 1,aaa 2,aaa 3,bbb 4,aaa
+
+# 좋아요. board, member 3번 게시글 aaa, 3번 bbb, 1번 게시글 aaa
+def likes(request):
+  id = request.session["session_id"]
+  member = Member.objects.get(id=id)
+  bno = request.POST.get("bno")
+  board = Board.objects.get(bno=bno)
+  
+  # 저장
+  if board.like_members.filter(pk=id).exists(): # 좋아요클릭을 했으면
+    board.like_members.remove(member)
+    result = "remove" # 좋아요취소
+  else:
+    board.like_members.add(member)
+    result = "add" #좋아요추가
+  
+  print("좋아요 개수 확인: ",board.like_members.count())
+  
+  context = {"result":result,"count":board.like_members.count()}
+  
+  return JsonResponse(context)
+
+
 
 ## form
 def form(request):

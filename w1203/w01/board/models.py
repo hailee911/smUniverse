@@ -5,6 +5,10 @@ class Board(models.Model):
   bno = models.AutoField(primary_key=True)
   # id = models.CharField(max_length=100)
   member = models.ForeignKey(Member,on_delete=models.DO_NOTHING, null=True)
+  
+  # Board 객체: 좋아요 체크 -  bno, member
+  like_members = models.ManyToManyField(Member,default='', related_name='like_member')
+  
   btitle = models.CharField(max_length=1000)
   bcontent = models.TextField()
   # 계층형 게시판
@@ -20,3 +24,4 @@ class Board(models.Model):
   
   def __str__(self):
     return f"{self.bno},{self.btitle},{self.bgroup},{self.bdate}"
+
